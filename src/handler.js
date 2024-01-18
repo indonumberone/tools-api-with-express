@@ -28,7 +28,7 @@ export const listBank = async (req, res, next) => {
     }
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const bank = async (req, res, next) => {
@@ -71,7 +71,7 @@ export const bank = async (req, res, next) => {
     return responses;
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const listEwallet = async (req, res, next) => {
@@ -102,7 +102,7 @@ export const listEwallet = async (req, res, next) => {
     }
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const ewallet = async (req, res, next) => {
@@ -143,17 +143,46 @@ export const ewallet = async (req, res, next) => {
     return responses;
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 
 export const serverTiktok1 = async (req, res, next) => {
+  if (!req.query.url) {
+    return res.status(400).send({
+      status: 'fail',
+      message: 'Gagal masukan url tiktok',
+    });
+  }
   try {
-    const response = await axios.get('link');
-    res.send(response.data);
+    const response = await axios.get(
+      'https://vihangayt.me/download/tiktok?url=' + req.query.url,
+    );
+    console.log(response.data);
+    const statusresponse = response.data.status;
+    console.log(response.data);
+    let responses;
+
+    if (!statusresponse) {
+      responses = res.status(400).send({
+        status: 'fail',
+        message: response.data.err,
+      });
+    } else {
+      responses = res.status(200).send({
+        status: 'sukses',
+        message: response.data.data.mess,
+        data: {
+          author: response.data.data.author,
+          desc: response.data.data.desc,
+          cover: response.data.data.cover,
+          url: response.data.data.links[0].a,
+        },
+      });
+    }
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const template = async (req, res, next) => {
@@ -162,6 +191,6 @@ export const template = async (req, res, next) => {
     res.send(response.data);
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
