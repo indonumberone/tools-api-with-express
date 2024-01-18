@@ -5,7 +5,27 @@ export const listBank = async (req, res, next) => {
     const response = await axios.get(
       'https://api-rekening.lfourr.com/listBank',
     );
-    res.send(response.data);
+    const statusresponse = response.data.status;
+    console.log(response.data);
+    let responses;
+
+    if (!statusresponse) {
+      responses = res.status(400).send({
+        status: 'fail',
+        message: response.data.msg,
+      });
+    } else {
+      responses = res.status(200).send({
+        status: 'sukses',
+        message: 'data berhasil diambil dari server',
+        data: response.data.data.map((value) => ({
+          bankcode: value.kodeBank,
+          bankname: value.namaBank,
+        })),
+      });
+
+      return responses;
+    }
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
     res.status(500).send('Internal Server Error');
@@ -59,7 +79,27 @@ export const listEwallet = async (req, res, next) => {
     const response = await axios.get(
       'https://api-rekening.lfourr.com/listEwallet',
     );
-    res.send(response.data);
+    const statusresponse = response.data.status;
+    console.log(response.data);
+    let responses;
+
+    if (!statusresponse) {
+      responses = res.status(400).send({
+        status: 'fail',
+        message: response.data.msg,
+      });
+    } else {
+      responses = res.status(200).send({
+        status: 'sukses',
+        message: 'data berhasil diambil dari server',
+        data: response.data.data.map((value) => ({
+          ewallet_code: value.kodeBank,
+          ewallet_name: value.namaBank,
+        })),
+      });
+
+      return responses;
+    }
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
     res.status(500).send('Internal Server Error');
@@ -101,6 +141,25 @@ export const ewallet = async (req, res, next) => {
       });
     }
     return responses;
+  } catch (error) {
+    console.error('Error fetching list of banks:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+export const serverTiktok1 = async (req, res, next) => {
+  try {
+    const response = await axios.get('link');
+    res.send(response.data);
+  } catch (error) {
+    console.error('Error fetching list of banks:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+};
+export const template = async (req, res, next) => {
+  try {
+    const response = await axios.get('link');
+    res.send(response.data);
   } catch (error) {
     console.error('Error fetching list of banks:', error.message);
     res.status(500).send('Internal Server Error');
