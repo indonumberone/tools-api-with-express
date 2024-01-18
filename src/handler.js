@@ -1,4 +1,5 @@
 import axios from 'axios';
+import tiktok from '../utils/tiktok.js';
 
 export const listBank = async (req, res, next) => {
   try {
@@ -182,6 +183,78 @@ export const serverTiktok1 = async (req, res, next) => {
           desc: response.data.data.desc,
           cover: response.data.data.cover,
           url: response.data.data.links[0].a,
+        },
+      });
+    }
+    return responses;
+  } catch (error) {
+    console.error('Error fetching list of banks:', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+export const serverTiktok2 = async (req, res, next) => {
+  if (!req.query.url) {
+    return res.status(400).send({
+      status: 'fail',
+      message: 'Gagal masukan url tiktok',
+    });
+  }
+  try {
+    const response = await axios.get(
+      'https://rest-api.akuari.my.id/downloader/tiktok2?link=' + req.query.url,
+    );
+    console.log(response.data);
+    const statusresponse = response.data.respon;
+    //   console.log(response.data);
+    let responses;
+
+    if (!statusresponse) {
+      responses = res.status(400).send({
+        status: 'fail',
+        message: 'masukan url yang valid',
+      });
+    } else {
+      responses = res.status(200).send({
+        status: 'sukses',
+        by: 'tribone',
+        message: '',
+        data: {
+          author: response.data.respon.author.unique_id,
+          desc: response.data.respon.title,
+          cover: response.data.respon.origin_cover,
+          url: response.data.respon.hdplay,
+        },
+      });
+    }
+    return responses;
+  } catch (error) {
+    console.error('Error fetching list of banks:', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+export const serverTiktok3 = async (req, res, next) => {
+  if (!req.query.url) {
+    return res.status(400).send({
+      status: 'fail',
+      message: 'Gagal masukan url tiktok',
+    });
+  }
+  try {
+    const response = await tiktok(req.query.url);
+
+    if (!response) {
+      return res.status(404).send({
+        status: 'fail',
+        message: 'Gagal!!! masukan url tiktok yang benar',
+      });
+    } else {
+      res.status(200).send({
+        status: 'sukses',
+        by: 'tribone',
+        message: '',
+        data: {
+          author: response.author.unique_id,
+          url: response.video.no_watermark_hd,
         },
       });
     }
