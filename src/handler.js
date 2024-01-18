@@ -17,6 +17,7 @@ export const listBank = async (req, res, next) => {
     } else {
       responses = res.status(200).send({
         status: 'sukses',
+        by: 'tribone',
         message: 'data berhasil diambil dari server',
         data: response.data.data.map((value) => ({
           bankcode: value.kodeBank,
@@ -58,6 +59,7 @@ export const bank = async (req, res, next) => {
     } else {
       responses = res.status(200).send({
         status: 'sukses',
+        by: 'tribone',
         message: 'data berhasil di ambil dari server',
         data: {
           bankcode: response.data.data.bankcode,
@@ -91,6 +93,7 @@ export const listEwallet = async (req, res, next) => {
     } else {
       responses = res.status(200).send({
         status: 'sukses',
+        by: 'tribone',
         message: 'data berhasil diambil dari server',
         data: response.data.data.map((value) => ({
           ewallet_code: value.kodeBank,
@@ -132,6 +135,7 @@ export const ewallet = async (req, res, next) => {
     } else {
       responses = res.status(200).send({
         status: 'sukses',
+        by: 'tribone',
         message: 'data berhasil di ambil dari server',
         data: {
           ewallet_name: response.data.data.bankcode,
@@ -171,6 +175,7 @@ export const serverTiktok1 = async (req, res, next) => {
     } else {
       responses = res.status(200).send({
         status: 'sukses',
+        by: 'tribone',
         message: response.data.data.mess,
         data: {
           author: response.data.data.author,
