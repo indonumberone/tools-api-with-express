@@ -290,11 +290,13 @@ export const serverIg1 = async (req, res, next) => {
         status: 'sukses',
         by: 'tribone',
         message: 'data berhasil di ambil dari server',
-        data: response.data.data.map((value, key) => ({
-          number: key + 1,
-          cover: value.thumbnail_link,
-          url: value.download_link,
-        })),
+        data: response.data.data.map((value, key) => [
+          {
+            number: key + 1,
+            cover: value.thumbnail_link,
+            url: value.download_link,
+          },
+        ]),
       });
     }
     return responses;
