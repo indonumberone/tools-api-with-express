@@ -268,7 +268,7 @@ export const serverIg1 = async (req, res, next) => {
   if (!req.query.url) {
     return res.status(400).send({
       status: 'failed',
-      message: 'Gagal masukan url tiktok',
+      message: 'Gagal masukan link instagram',
     });
   }
   try {
