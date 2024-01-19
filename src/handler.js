@@ -12,7 +12,7 @@ export const listBank = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: response.data.msg,
       });
     } else {
@@ -29,19 +29,19 @@ export const listBank = async (req, res, next) => {
       return responses;
     }
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const bank = async (req, res, next) => {
   if (!req.query.namalayanan)
     return res.status(400).send({
-      status: 'fail',
+      status: 'failed',
       message: 'Gagal masukan parameter nama layanan',
     });
   if (!req.query.norek)
     return res.status(400).send({
-      status: 'fail',
+      status: 'failed',
       message: 'Gagal masukan parameter nomor rekening',
     });
   try {
@@ -54,7 +54,7 @@ export const bank = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: response.data.msg,
       });
     } else {
@@ -73,7 +73,7 @@ export const bank = async (req, res, next) => {
 
     return responses;
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
@@ -88,7 +88,7 @@ export const listEwallet = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: response.data.msg,
       });
     } else {
@@ -105,19 +105,19 @@ export const listEwallet = async (req, res, next) => {
       return responses;
     }
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const ewallet = async (req, res, next) => {
   if (!req.query.namalayanan)
     return res.status(400).send({
-      status: 'fail',
+      status: 'failed',
       message: 'Gagal masukan parameter nama layanan',
     });
   if (!req.query.norek)
     return res.status(400).send({
-      status: 'fail',
+      status: 'failed',
       message: 'Gagal masukan parameter nomor rekening',
     });
   try {
@@ -130,7 +130,7 @@ export const ewallet = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: response.data.msg,
       });
     } else {
@@ -147,7 +147,7 @@ export const ewallet = async (req, res, next) => {
     }
     return responses;
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
@@ -155,8 +155,8 @@ export const ewallet = async (req, res, next) => {
 export const serverTiktok1 = async (req, res, next) => {
   if (!req.query.url) {
     return res.status(400).send({
-      status: 'fail',
-      message: 'Gagal masukan url tiktok',
+      status: 'failed',
+      message: 'Gagal, masukan link video tiktok',
     });
   }
   try {
@@ -170,7 +170,7 @@ export const serverTiktok1 = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: response.data.err,
       });
     } else {
@@ -188,15 +188,15 @@ export const serverTiktok1 = async (req, res, next) => {
     }
     return responses;
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const serverTiktok2 = async (req, res, next) => {
   if (!req.query.url) {
     return res.status(400).send({
-      status: 'fail',
-      message: 'Gagal masukan url tiktok',
+      status: 'failed',
+      message: 'Gagal, masukan link video tiktok',
     });
   }
   try {
@@ -210,14 +210,14 @@ export const serverTiktok2 = async (req, res, next) => {
 
     if (!statusresponse) {
       responses = res.status(400).send({
-        status: 'fail',
+        status: 'failed',
         message: 'masukan url yang valid',
       });
     } else {
       responses = res.status(200).send({
         status: 'sukses',
         by: 'tribone',
-        message: '',
+        message: 'data berhasil di ambil dari server',
         data: {
           author: response.data.respon.author.unique_id,
           desc: response.data.respon.title,
@@ -228,15 +228,15 @@ export const serverTiktok2 = async (req, res, next) => {
     }
     return responses;
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
 export const serverTiktok3 = async (req, res, next) => {
   if (!req.query.url) {
     return res.status(400).send({
-      status: 'fail',
-      message: 'Gagal masukan url tiktok',
+      status: 'failed',
+      message: 'Gagal, masukan link video tiktok',
     });
   }
   try {
@@ -244,14 +244,14 @@ export const serverTiktok3 = async (req, res, next) => {
 
     if (!response) {
       return res.status(404).send({
-        status: 'fail',
+        status: 'failed',
         message: 'Gagal!!! masukan url tiktok yang benar',
       });
     } else {
       res.status(200).send({
         status: 'sukses',
         by: 'tribone',
-        message: '',
+        message: 'data berhasil di ambil dari server',
         data: {
           author: response.author.unique_id,
           url: response.video.no_watermark_hd,
@@ -259,16 +259,57 @@ export const serverTiktok3 = async (req, res, next) => {
       });
     }
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
+
+export const serverIg1 = async (req, res, next) => {
+  if (!req.query.url) {
+    return res.status(400).send({
+      status: 'failed',
+      message: 'Gagal masukan url tiktok',
+    });
+  }
+  try {
+    const response = await axios.get(
+      'https://vihangayt.me/download/instagram2?url=' + req.query.url,
+    );
+    console.log(response.data);
+    const statusresponse = response.data.status;
+
+    let responses;
+
+    if (!statusresponse) {
+      responses = res.status(400).send({
+        status: 'failed',
+        message: response.data.err,
+      });
+    } else {
+      responses = res.status(200).send({
+        status: 'sukses',
+        by: 'tribone',
+        message: 'data berhasil di ambil dari server',
+        data: response.data.data.map((value, key) => ({
+          number: key + 1,
+          cover: value.thumbnail_link,
+          url: value.download_link,
+        })),
+      });
+    }
+    return responses;
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+
 export const template = async (req, res, next) => {
   try {
     const response = await axios.get('link');
     res.send(response.data);
   } catch (error) {
-    console.error('Error fetching list of banks:', error.message);
+    console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
