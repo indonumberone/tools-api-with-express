@@ -304,6 +304,16 @@ export const serverIg1 = async (req, res, next) => {
   }
 };
 
+export const test = async (req, res, next) => {
+  try {
+    const response = await axios.get('link');
+    res.send(response.data);
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+
 export const template = async (req, res, next) => {
   try {
     const response = await axios.get('link');
