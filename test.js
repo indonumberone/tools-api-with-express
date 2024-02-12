@@ -1,76 +1,55 @@
-import tiktok from './utils/tiktok.js';
+//import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 
-const data = await tiktok(
-  'https://www.tiktok.com/@fcbmzr10/video/731032454547383775628577',
-);
+// export const test = async (link, output) => {
+//   // puppeteer.use(StealthPlugin());
+//   // const browser = await puppeteer.launch({headless: false});
+//   // const page = await browser.newPage();
+//   // await page.goto('https://casa.tribone.my.id/#/');
+//   // await page.waitForSelector(
+//   //   '#login-page > div > span > span:nth-child(1) > div > div > input',
+//   // );
+//   // await page.type(
+//   //   '#login-page > div > span > span:nth-child(1) > div > div > input',
+//   //   'chitanda',
+//   // );
+//   // await page.type(
+//   //   '#login-page > div > span > span:nth-child(2) > div > div > input',
+//   //   'w3madefor2',
+//   // );
+//   // console.log('done');
+//   // await page.waitForSelector('#login-page > div > span > button > span');
+//   // // await page.waitForTimeout(4000);
+//   // await page.click('#login-page > div > span > button');
+//   // console.log('masuk');
+//   // // await page.$eval('#login-page > div > span > button', (el) => el.click());
+//   // await page.waitForSelector(
+//   //   '#app-Files > div > div.cards-content > div > div.tooltip-trigger > div > div',
+//   // );
+//   // await page.click(
+//   //   '#app-Files > div > div.cards-content > div > div.tooltip-trigger > div > div',
+//   // );
+//   // console.log('done klik menu');
+//   // await page.waitForSelector(
+//   //   '#app > div.out-container > div.modal.is-active.is-full-screen.file-panel > div.animation-content > div > div > section > div.content.is-flex-grow-1 > div > div.tool-bar.is-flex.mb-2.mt-2.is-flex-shrink-0 > div.view-btns.is-flex-shrink-0 > div > div.tooltip-trigger > p > span > i:not([disabled]',
+//   // );
+//   // await page.click(
+//   //   '#app > div.out-container > div.modal.is-active.is-full-screen.file-panel > div.animation-content > div > div > section > div.content.is-flex-grow-1 > div > div.tool-bar.is-flex.mb-2.mt-2.is-flex-shrink-0 > div.view-btns.is-flex-shrink-0 > div > div.tooltip-trigger > p > span > i:not([disabled]',
+//   // );
+//   // const accessToken = await page.evaluate(() => {
+//   //   return localStorage.getItem('access_token');
+//   // });
+//   // console.log(accessToken);
+//   // await page.close();
+//   // if (accessToken) {
+//   //   const upload = axios.post(
+//   //     'https://casa.tribone.my.id/v2/casaos/file/upload',
+//   //     data,
+//   //   );
+//   // } else {
+//   //   console.log('accsess token gagal di ambil');
+//   // }
+// };
 
-console.log(data);
-// import express from 'express';
-// import bodyParser from 'body-parser';
-// import cors from 'cors';
-// import axios from 'axios';
-// // const test = async () => {
-// //   try {
-// //     const response = await axios.get("https://api-rekening.lfourr.com/listBank");
-// //   } catch (error) {}
-// // };
-
-// // test();
-// const app = express();
-// const port = 3000;
-
-// app.use(bodyParser.json(), cors());
-
-// // app.get('/listbank', async (req, res) => {
-// //   const response = await axios.get('https://api-rekening.lfourr.com/listBank');
-// //   res.send(response.data);
-// // });
-// // app.get('/listwallet', async (req, res) => {
-// //   const response = await axios.get(
-// //     'https://api-rekening.lfourr.com/listEwallet',
-// //   );
-// //   res.send(response.data);
-// // });
-// // app.get('/bank', async (req, res) => {
-// //   const response = await axios.get(
-// //     `https://api-rekening.lfourr.com/getBankAccount?bankCode=${req.query.namalayanan}&accountNumber=${req.query.norek}`,
-// //   );
-// //   res.send(response.data);
-// //   console.log(req.query.namalayanan, req.query.norek, response.data);
-// // });
-// // app.get('/wallet', async (req, res) => {
-// //   const response = await axios.get(
-// //     `https://api-rekening.lfourr.com/getEwalletAccount?bankCode=${req.query.namalayanan}&accountNumber=${req.query.norek}`,
-// //   );
-// //   res.send(response.data);
-// //   console.log(req.query.namalayanan, req.query.norek, response.data);
-// // });
-// app.listen(port, () => {
-//   console.log(`app running at http://localhost:${port}`);
-// });
-
-// app.get('/about', async (req, res) => {
-//   let anuarray = [];
-//   for (let i = 2423600031; i <= 2423600060; i++) {
-//     if (
-//       i !== 2423600039 &&
-//       i !== 2423600046 &&
-//       i !== 2423600051 &&
-//       i !== 2423600052 &&
-//       i !== 2423600054 &&
-//       i !== 2423600057 &&
-//       i !== 2423600059
-//     ) {
-//       let response = await axios.get(
-//         `https://api-frontend.kemdikbud.go.id/hit_mhs/${i}`,
-//       );
-//       let nama;
-
-//       const data = response.data.mahasiswa[0].text.split(',');
-//       nama = data[0].replace(/\s*\(.*?\)\s*/g, '');
-//       anuarray.push(nama);
-//       //   console.log(anuarray);
-//     }
-//   }
-//   res.send(anuarray);
-// });
+// console.log(await test());

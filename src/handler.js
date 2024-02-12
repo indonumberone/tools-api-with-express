@@ -1,5 +1,7 @@
 import axios from 'axios';
+import path from 'path';
 import tiktok from '../utils/tiktok.js';
+import {screenshot} from '../utils/screenshot.js';
 
 export const listBank = async (req, res, next) => {
   try {
@@ -304,6 +306,23 @@ export const serverIg1 = async (req, res, next) => {
   }
 };
 
+export const screenshotapi = async (req, res, next) => {
+  try {
+    if (!req.query.url) {
+      return res.status(400).send({
+        status: 'failed',
+        message: 'Masukan URL yang benar',
+      });
+    }
+    const outputPath = 'screenshot.png';
+    await screenshot(req.query.url, outputPath);
+    const file = path.resolve(outputPath);
+    res.status(200).sendFile(file);
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
 export const template = async (req, res, next) => {
   try {
     const response = await axios.get('link');

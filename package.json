@@ -1,9 +1,19 @@
 {
   "dependencies": {
     "@bochilteam/scraper": "^4.2.4",
-    "axios": "^1.6.2",
+    "@sasmeee/igdl": "^1.0.0",
+    "axios": "^1.6.7",
+    "chatgpt": "^5.2.5",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "dotenv": "^16.4.2",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.18.2",
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.3.2",
+    "puppeteer": "^21.7.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "snapsave-downloader-itj": "^1.0.1"
   },
   "name": "test",
   "version": "1.0.0",
