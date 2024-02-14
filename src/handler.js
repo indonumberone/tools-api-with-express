@@ -2,6 +2,7 @@ import axios from 'axios';
 import path from 'path';
 import tiktok from '../utils/tiktok.js';
 import {screenshot} from '../utils/screenshot.js';
+import {anis, prabowo, ganjar} from '../utils/quickConeServer1.js';
 
 export const listBank = async (req, res, next) => {
   try {
@@ -318,6 +319,27 @@ export const screenshotapi = async (req, res, next) => {
     await screenshot(req.query.url, outputPath);
     const file = path.resolve(outputPath);
     res.status(200).sendFile(file);
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+export const quick1 = async (req, res, next) => {
+  try {
+    const hasilAnis = await anis();
+    const hasilGanjar = await ganjar();
+    const hasilPrabowo = await prabowo();
+
+    return (responses = res.status(200).send({
+      status: 'sukses',
+      by: 'tribone',
+      message: 'data berhasil di ambil dari server',
+      data: {
+        anis: hasilAnis,
+        prabowo: hasilGanjar,
+        ganjar: hasilPrabowo,
+      },
+    }));
   } catch (error) {
     console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});

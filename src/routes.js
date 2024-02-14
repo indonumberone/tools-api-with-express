@@ -8,6 +8,7 @@ import {
   serverTiktok2,
   serverTiktok3,
   serverIg1,
+  quick1,
   screenshotapi,
 } from './handler.js';
 
@@ -21,5 +22,6 @@ routers.get('/servertiktok2', serverTiktok2);
 routers.get('/servertiktok3', serverTiktok3);
 routers.get('/serverig', serverIg1);
 routers.get('/screenshot', screenshotapi);
+routers.get('/quick1', quick1);
 
 export default routers;
