@@ -12,7 +12,3 @@ export const instagram = async (link, output) => {
   let linkii = await page.$$eval('a', (el) => el.map((a) => a.href));
   console.log(linki);
 };
-
-instagram(
-  'https://www.instagram.com/p/C2cO8h5SS_T/?utm_source=ig_web_copy_link',
-);

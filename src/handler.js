@@ -1,9 +1,14 @@
 import axios from 'axios';
 import path from 'path';
+import {Readable} from 'stream';
+import streamifier from 'streamifier';
+import multer from 'multer';
+import fs from 'fs';
 import tiktok from '../utils/tiktok.js';
 import {screenshot} from '../utils/screenshot.js';
 import {anis, prabowo, ganjar} from '../utils/quickConeServer1.js';
-
+import trendsX from '../utils/trendsx.js';
+import {uploadcasa} from '../utils/upload_casa.js';
 export const listBank = async (req, res, next) => {
   try {
     const response = await axios.get(
@@ -345,10 +350,49 @@ export const quick1 = async (req, res, next) => {
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
   }
 };
+export const trendx = async (req, res, next) => {
+  try {
+    const response = await trendsX();
+    return res.status(200).send({
+      status: 'sukses',
+      by: 'tribone',
+      message: 'data berhasil di ambil dari server',
+      data: response,
+    });
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
+
+export const casaupload = async (req, res, next) => {
+  try {
+    const file = req.file.path;
+    const fileName = req.file.originalname;
+    const fileSize = req.file.size;
+    const response = await uploadcasa(file, fileName, fileSize);
+    fs.unlink(file, (err) => {
+      if (err) {
+        console.error('Error deleting file:', err);
+      } else {
+        console.log('File deleted successfully');
+      }
+    });
+    return res.status(200).send({
+      status: 'sukses',
+      by: 'tribone',
+      message: 'data berhasil di ambil dari server',
+      data: response,
+    });
+  } catch (error) {
+    console.error('Error fetching :', error.message);
+    res.status(500).send({status: 'Error', message: 'Internal Server Error'});
+  }
+};
 export const template = async (req, res, next) => {
   try {
     const response = await axios.get('link');
-    res.send(response.data);
+    res.send(response);
   } catch (error) {
     console.error('Error fetching :', error.message);
     res.status(500).send({status: 'Error', message: 'Internal Server Error'});
