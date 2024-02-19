@@ -63,7 +63,7 @@ export const uploadcasa = async (file, fileName, fileSize) => {
           accessToken +
           '&path=' +
           pathcasa,
-        image: linkDownload.data,
+        content: linkDownload.data,
       };
     } catch (error) {
       console.log(error, 'errorr');
